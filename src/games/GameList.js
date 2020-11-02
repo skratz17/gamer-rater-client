@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { GameContext } from './GameProvider';
 
 export const GameList = () => {
@@ -12,7 +13,9 @@ export const GameList = () => {
     <ul className="game-list">
       {
         games.map(game => (
-          <li key={game.id}>{game.title}</li>
+          <li key={game.id}>
+            <Link to={`/games/${game.id}`}>{game.title}</Link>
+          </li>
         ))
       }
     </ul>
