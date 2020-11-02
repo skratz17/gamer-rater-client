@@ -12,7 +12,7 @@ export const GameList = () => {
     <ul className="game-list">
       {
         games.map(game => (
-          <li key={game.id}>{game.name}</li>
+          <li key={game.id}>{game.title}</li>
         ))
       }
     </ul>
