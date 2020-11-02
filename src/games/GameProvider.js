@@ -1,18 +1,15 @@
 import React, { createContext, useState } from 'react';
 
+import { request } from '../utils/request';
+
 export const GameContext = createContext();
 
 export const GameProvider = props => {
   const [ games, setGames ] = useState([]);
 
   const getGames = async () => {
-    const response = await fetch('http://localhost:8000/games', {
-      headers: {
-        'Authorization': `Token ${localStorage.getItem('gamer_rater_token')}`
-      }
-    });
+    const response = await request('http://localhost:8000/games');
     const games = await response.json();
-    console.log(games);
     setGames(games);
   };
 
