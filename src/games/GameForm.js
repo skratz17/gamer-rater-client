@@ -1,10 +1,13 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { CategorySelect } from '../categories/CategorySelect';
 import { GameContext } from './GameProvider';
 
 export const GameForm = () => {
   const [ formValues, setFormValues ] = useState({});
+
+  const history = useHistory();
 
   const { createGame } = useContext(GameContext);
 
@@ -20,6 +23,7 @@ export const GameForm = () => {
     e.preventDefault();
 
     await createGame(formValues);
+    history.push('/games');
   };
 
   return (
