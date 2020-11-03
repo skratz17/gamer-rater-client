@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react';
 
 import { request } from '../utils/request';
 
-export const CategoryContext = useContext();
+export const CategoryContext = createContext();
 
 export const CategoryProvider = props => {
   const [ categories, setCategories ] = useState([]);

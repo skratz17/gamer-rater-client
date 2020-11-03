@@ -19,8 +19,12 @@ export const GameProvider = props => {
     return game;
   };
 
+  const createGame = async game => {
+    console.log(game);
+  };
+
   return (
-    <GameContext.Provider value={{ games, getGames, getGameById }}>
+    <GameContext.Provider value={{ games, getGames, getGameById, createGame }}>
       {props.children}
     </GameContext.Provider>
   );
