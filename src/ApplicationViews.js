@@ -3,12 +3,21 @@ import { Route } from 'react-router-dom';
 import { GameList } from './games/GameList';
 import { GameDetail } from './games/GameDetail';
 import { GameProvider } from './games/GameProvider';
+import { GameForm } from './games/GameForm';
+import { CategoryProvider } from './categories/CategoryProvider';
+import { DesignerProvider } from './designers/DesignerProvider';
 
-export const ApplicationViews = props => (
+export const ApplicationViews = () => (
   <>
     <GameProvider>
-      <Route exact path="/games" component={GameList} />
-      <Route path="/games/:gameId" component={GameDetail} />
+      <DesignerProvider>
+        <CategoryProvider>
+          <Route exact path="/" component={GameList} />
+          <Route exact path="/games" component={GameList} />
+          <Route path="/games/create" component={GameForm} />
+          <Route path="/games/:gameId(\d+)" component={GameDetail} />
+        </CategoryProvider>
+      </DesignerProvider>
     </GameProvider>
   </>
 );
