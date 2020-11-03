@@ -13,6 +13,7 @@ export const GameDetail = () => {
   useEffect(() => {
     const _getGameById = async gameId => {
       const _game = await getGameById(gameId);
+      console.log(_game);
 
       setGame(_game);
     }
@@ -32,6 +33,9 @@ export const GameDetail = () => {
       <p className="game__num-players">Up to {game.num_players} players</p>
       <p className="game__estimated-duration">Average game lasts {game.estimated_duration} minutes</p>
       <p className="game__age-recommendation">Recommended for players {game.age_recommendation} years of age and up</p>
+      {
+        game.categories.map(({ category }) => <p key={category.id} className="game__category">{category.name}</p>)
+      }
     </div>
   )
 };
