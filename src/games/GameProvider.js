@@ -20,7 +20,7 @@ export const GameProvider = props => {
   };
 
   const createGame = async game => {
-    console.log(game);
+    return await request('http://localhost:8000/games', 'POST', game);
   };
 
   return (

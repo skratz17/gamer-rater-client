@@ -64,6 +64,11 @@ export const GameForm = () => {
         <input type="number" name="ageRecommendation" value={formValues.ageRecommendation || ''} onChange={handleChange} /><span> and up</span>
       </fieldset>
 
+      <fieldset>
+        <label>Description</label>
+        <textarea name="description" value={formValues.description || ''} onChange={handleChange} />
+      </fieldset>
+
       <button type="submit">Submit</button>
     </form>
   );
