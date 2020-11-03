@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { CategorySelect } from '../categories/CategorySelect';
+import { DesignerSelect } from '../designers/DesignerSelect';
 import { GameContext } from './GameProvider';
 
 export const GameForm = () => {
@@ -36,6 +37,11 @@ export const GameForm = () => {
       <fieldset>
         <label>Category</label>
         <CategorySelect placeholder="Choose a category" value={formValues.categoryId} onChange={handleChange} name="categoryId" />
+      </fieldset>
+
+      <fieldset>
+        <label>Designer</label>
+        <DesignerSelect placeholder="Choose a designer" value={formValues.designerId} onChange={handleChange} name="designerId" />
       </fieldset>
 
       <fieldset>
