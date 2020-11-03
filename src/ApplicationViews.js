@@ -4,9 +4,10 @@ import { GameList } from './games/GameList';
 import { GameDetail } from './games/GameDetail';
 import { GameProvider } from './games/GameProvider';
 
-export const ApplicationViews = props => (
+export const ApplicationViews = () => (
   <>
     <GameProvider>
+      <Route exact path="/" component={GameList} />
       <Route exact path="/games" component={GameList} />
       <Route path="/games/:gameId" component={GameDetail} />
     </GameProvider>

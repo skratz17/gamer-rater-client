@@ -27,7 +27,7 @@ export const GameDetail = () => {
   return (
     <div className="game">
       <h2 className="game__title">{game.title} ({game.year})</h2>
-      <p className="game__designer">{game.designer || 'Unknown Developer'}</p>
+      <p className="game__designer">{game.designer ? game.designer.name : 'Unknown Developer'}</p>
       <p className="game__description">{game.description}</p>
       <p className="game__num-players">Up to {game.num_players} players</p>
       <p className="game__estimated-duration">Average game lasts {game.estimated_duration} minutes</p>
