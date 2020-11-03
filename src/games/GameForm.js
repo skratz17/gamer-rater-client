@@ -16,7 +16,7 @@ export const GameForm = () => {
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     await createGame(formValues);
@@ -53,6 +53,8 @@ export const GameForm = () => {
         <label>Recommended Age Group</label>
         <input type="number" name="ageRecommendation" value={formValues.ageRecommendation || ''} onChange={handleChange} /><span> and up</span>
       </fieldset>
+
+      <button type="submit">Submit</button>
     </form>
   );
 };

@@ -11,7 +11,7 @@ export const CategorySelect = props => {
   }, []);
 
   return (
-    <select name={name} value={value} onChange={onChange}>
+    <select name={name} value={value || 0} onChange={onChange}>
       <option value="0" disabled>{placeholder}</option>
       {
         categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)

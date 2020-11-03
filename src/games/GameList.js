@@ -10,14 +10,17 @@ export const GameList = () => {
   }, []);
 
   return (
-    <ul className="game-list">
-      {
-        games.map(game => (
-          <li key={game.id}>
-            <Link to={`/games/${game.id}`}>{game.title}</Link>
-          </li>
-        ))
-      }
-    </ul>
+    <div>
+      <Link to="/games/create">Create New Game</Link>
+      <ul className="game-list">
+        {
+          games.map(game => (
+            <li key={game.id}>
+              <Link to={`/games/${game.id}`}>{game.title}</Link>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   );
 };
