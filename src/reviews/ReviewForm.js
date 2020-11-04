@@ -1,7 +1,12 @@
 import React, { useState, useContext } from 'react';
+import { ReviewContext } from './ReviewProvider';
 
-export const ReviewForm = () => {
+export const ReviewForm = props => {
+  const { gameId } = props;
+
   const [ formValues, setFormValues ] = useState({ rating: 5 });
+
+  const { createReview } = useContext(ReviewContext);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -11,10 +16,16 @@ export const ReviewForm = () => {
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
-    console.log(formValues);
+    const review = {
+      ...formValues,
+      gameId,
+      timestamp: (new Date()).toISOString
+    }
+
+    await createReview(review);
   };
 
   return (

@@ -41,7 +41,7 @@ export const GameDetail = () => {
       }
 
       <ReviewProvider>
-        <ReviewForm />
+        <ReviewForm gameId={game.id} />
         <ReviewList gameId={game.id} />
       </ReviewProvider>
     </div>

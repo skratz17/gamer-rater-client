@@ -16,8 +16,12 @@ export const ReviewProvider = props => {
     setReviews(reviews);
   };
 
+  const createReview = async review => {
+    return await request('http://localhost:8000/reviews', 'POST', review);
+  };
+
   return (
-    <ReviewContext.Provider value={{ reviews, getReviews }}>
+    <ReviewContext.Provider value={{ reviews, getReviews, createReview }}>
       {props.children}
     </ReviewContext.Provider>
   );
