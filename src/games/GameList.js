@@ -4,7 +4,7 @@ import { GameContext } from './GameProvider';
 import { GameSearch } from './GameSearch';
 
 export const GameList = () => {
-  const { games, getGames } = useContext(GameContext);
+  const { games, getGames, getGamesBySearchTerm } = useContext(GameContext);
 
   useEffect(() => {
     getGames();
@@ -12,7 +12,7 @@ export const GameList = () => {
 
   return (
     <div>
-      <GameSearch onSearch={searchTerm => console.log(searchTerm)} />
+      <GameSearch onSearch={searchTerm => getGamesBySearchTerm(searchTerm)} />
       <Link to="/games/create">Create New Game</Link>
       <ul className="game-list">
         {
