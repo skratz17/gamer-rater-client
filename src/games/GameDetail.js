@@ -39,7 +39,7 @@ export const GameDetail = () => {
       {
         game.categories.map(({ category }) => <p key={category.id} className="game__category">{category.name}</p>)
       }
-
+      <p className="game__average-rating">Average rating: {game.average_rating} / 10</p>
       <ReviewProvider>
         <ReviewForm gameId={game.id} />
         <ReviewList gameId={game.id} />
