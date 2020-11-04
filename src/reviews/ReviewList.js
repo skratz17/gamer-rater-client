@@ -14,6 +14,10 @@ export const ReviewList = props => {
     }
   }, []);
 
+  if(!gameId) {
+    return null;
+  }
+
   return (
     <div className="review-list">
       <h3 className="review-list__header">Reviews</h3>
