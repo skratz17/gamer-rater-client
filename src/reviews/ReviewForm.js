@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 
 export const ReviewForm = () => {
-  const [ formValues, setFormValues ] = useState({});
+  const [ formValues, setFormValues ] = useState({ rating: 5 });
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -19,10 +19,21 @@ export const ReviewForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <textarea name="review" 
-        value={formValues.review || ''} 
-        onChange={handleChange} 
-        placeholder="Write a review" />
+      <fieldset>
+        <label>Rating</label>
+        <input type="range" min="0" max="10" step="1"
+          name="rating"
+          value={formValues.rating}
+          onChange={handleChange} />
+        <span>{formValues.rating}</span>
+      </fieldset>
+
+      <fieldset>
+        <textarea name="review" 
+          value={formValues.review || ''} 
+          onChange={handleChange} 
+          placeholder="Write a review" />
+      </fieldset>
 
       <button type="submit">Submit Review</button>
     </form>
