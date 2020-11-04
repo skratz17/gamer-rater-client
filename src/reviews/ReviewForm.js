@@ -6,7 +6,7 @@ export const ReviewForm = props => {
 
   const [ formValues, setFormValues ] = useState({ rating: 5 });
 
-  const { createReview } = useContext(ReviewContext);
+  const { createReview, getReviews } = useContext(ReviewContext);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -22,10 +22,13 @@ export const ReviewForm = props => {
     const review = {
       ...formValues,
       gameId,
-      timestamp: (new Date()).toISOString
+      timestamp: (new Date()).toISOString()
     }
 
     await createReview(review);
+    await getReviews(gameId);
+
+    setFormValues({ rating: 5 });
   };
 
   return (
