@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { GameContext } from './GameProvider';
 import { ReviewProvider } from '../reviews/ReviewProvider';
 import { ReviewList } from '../reviews/ReviewList';
+import { ReviewForm } from '../reviews/ReviewForm';
 
 export const GameDetail = () => {
   const { gameId } = useParams();
@@ -40,6 +41,7 @@ export const GameDetail = () => {
       }
 
       <ReviewProvider>
+        <ReviewForm />
         <ReviewList gameId={game.id} />
       </ReviewProvider>
     </div>
