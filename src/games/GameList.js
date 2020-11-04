@@ -10,9 +10,18 @@ export const GameList = () => {
     getGames();
   }, []);
 
+  const handleSearch = searchTerm => {
+    if(searchTerm) {
+      getGamesBySearchTerm(searchTerm);
+    }
+    else {
+      getGames();
+    }
+  };
+
   return (
     <div>
-      <GameSearch onSearch={searchTerm => getGamesBySearchTerm(searchTerm)} />
+      <GameSearch onSearch={handleSearch} />
       <Link to="/games/create">Create New Game</Link>
       <ul className="game-list">
         {
