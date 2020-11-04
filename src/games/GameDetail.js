@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { GameContext } from './GameProvider';
+import { ReviewProvider } from '../reviews/ReviewProvider';
+import { ReviewList } from '../reviews/ReviewList';
+import { ReviewForm } from '../reviews/ReviewForm';
 
 export const GameDetail = () => {
   const { gameId } = useParams();
@@ -36,6 +39,11 @@ export const GameDetail = () => {
       {
         game.categories.map(({ category }) => <p key={category.id} className="game__category">{category.name}</p>)
       }
+
+      <ReviewProvider>
+        <ReviewForm gameId={game.id} />
+        <ReviewList gameId={game.id} />
+      </ReviewProvider>
     </div>
   )
 };
