@@ -17,6 +17,7 @@ export const GameList = () => {
           games.map(game => (
             <li key={game.id}>
               <Link to={`/games/${game.id}`}>{game.title}</Link>
+              <span> (avg. rating: {game.average_rating} / 10)</span>
             </li>
           ))
         }
