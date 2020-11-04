@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GameContext } from './GameProvider';
 
-export const GameImageForm = () => {
+export const GameImageForm = props => {
+  const { gameId } = props;
+
+  const { addImage } = useContext(GameContext);
+
   const getBase64 = (file, callback) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result));
     reader.readAsDataURL(file);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
-    getBase64(e.target.game_image.files[0], base64ImageString => {
-      console.log("here is the base 64", base64ImageString)
+    getBase64(e.target.game_image.files[0], async imageBase64 => {
+      await addImage(imageBase64, gameId);
     });
   };
 

@@ -42,7 +42,7 @@ export const GameDetail = () => {
       }
       <p className="game__average-rating">Average rating: {game.average_rating} / 10</p>
 
-      <GameImageForm />
+      <GameImageForm gameId={game.id} />
 
       <ReviewProvider>
         <ReviewForm gameId={game.id} />
