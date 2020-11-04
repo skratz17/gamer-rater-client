@@ -41,6 +41,8 @@ export const GameDetail = () => {
       }
       <p className="game__average-rating">Average rating: {game.average_rating} / 10</p>
 
+      {game.images.map(({ image }) => <img src={image} />)}
+
       <GameImageForm gameId={game.id} onUploadSuccess={_getGameById} />
 
       <ReviewProvider>
