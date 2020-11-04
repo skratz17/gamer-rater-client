@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { GameContext } from './GameProvider';
 
 export const GameImageForm = props => {
-  const { gameId } = props;
+  const { gameId, onUploadSuccess } = props;
 
   const { addImage } = useContext(GameContext);
 
@@ -17,6 +17,7 @@ export const GameImageForm = props => {
 
     getBase64(e.target.game_image.files[0], async imageBase64 => {
       await addImage(imageBase64, gameId);
+      onUploadSuccess();
     });
   };
 
