@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { GameContext } from './GameProvider';
+import { GameSearch } from './GameSearch';
 
 export const GameList = () => {
   const { games, getGames } = useContext(GameContext);
@@ -11,6 +12,7 @@ export const GameList = () => {
 
   return (
     <div>
+      <GameSearch onSearch={searchTerm => console.log(searchTerm)} />
       <Link to="/games/create">Create New Game</Link>
       <ul className="game-list">
         {
