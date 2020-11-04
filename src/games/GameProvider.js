@@ -23,8 +23,17 @@ export const GameProvider = props => {
     return await request('http://localhost:8000/games', 'POST', game);
   };
 
+  const addImage = async (imageBase64, gameId) => {
+    const requestData = {
+      image: imageBase64,
+      gameId
+    };
+
+    return await request('http://localhost:8000/images', 'POST', requestData);
+  };
+
   return (
-    <GameContext.Provider value={{ games, getGames, getGameById, createGame }}>
+    <GameContext.Provider value={{ games, getGames, getGameById, createGame, addImage }}>
       {props.children}
     </GameContext.Provider>
   );

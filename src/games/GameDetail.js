@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { GameContext } from './GameProvider';
+import { GameImageForm } from './GameImageForm';
 import { ReviewProvider } from '../reviews/ReviewProvider';
 import { ReviewList } from '../reviews/ReviewList';
 import { ReviewForm } from '../reviews/ReviewForm';
@@ -13,14 +14,13 @@ export const GameDetail = () => {
 
   const [ game, setGame ] = useState(null);
 
+  const _getGameById = async gameId => {
+    const _game = await getGameById(gameId);
+
+    setGame(_game);
+  }
+
   useEffect(() => {
-    const _getGameById = async gameId => {
-      const _game = await getGameById(gameId);
-      console.log(_game);
-
-      setGame(_game);
-    }
-
     _getGameById(gameId);
   }, []);
 
@@ -40,6 +40,11 @@ export const GameDetail = () => {
         game.categories.map(({ category }) => <p key={category.id} className="game__category">{category.name}</p>)
       }
       <p className="game__average-rating">Average rating: {game.average_rating} / 10</p>
+
+      {game.images.map(({ image }) => <img src={image} />)}
+
+      <GameImageForm gameId={game.id} onUploadSuccess={_getGameById} />
+
       <ReviewProvider>
         <ReviewForm gameId={game.id} />
         <ReviewList gameId={game.id} />
