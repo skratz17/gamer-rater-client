@@ -7,17 +7,17 @@ import { GameSortControls } from './GameSortControls';
 export const GameList = () => {
   const { games, getGames, getGamesBySearchTerm, getSortedGames } = useContext(GameContext);
 
-  const [ sortField, setSortField ] = useState(null);
+  const [ sortData, setSortData ] = useState(null);
 
   useEffect(() => {
     getGames();
   }, []);
 
   useEffect(() => {
-    if(sortField) {
-      getSortedGames(sortField)
+    if(sortData) {
+      getSortedGames(sortData.field, sortData.isAscending)
     }
-  }, [ sortField ]);
+  }, [ sortData ]);
 
   const handleSearch = searchTerm => {
     if(searchTerm) {
@@ -28,10 +28,17 @@ export const GameList = () => {
     }
   };
 
+  const handleSortSelect = field => {
+    setSortData(prevSortData => {
+      const isAscending = field !== prevSortData?.field || !prevSortData.isAscending;
+      return { field, isAscending };
+    });
+  };
+
   return (
     <div>
       <GameSearch onSearch={handleSearch} />
-      <GameSortControls onSelect={setSortField} currentSortField={sortField} />
+      <GameSortControls onSelect={handleSortSelect} currentSortField={sortData} />
 
       <Link to="/games/create">Create New Game</Link>
       <ul className="game-list">

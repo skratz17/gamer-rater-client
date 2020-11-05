@@ -19,8 +19,8 @@ export const GameProvider = props => {
     setGames(games);
   };
 
-  const getSortedGames = async orderBy => {
-    const response = await request(`http://localhost:8000/games?orderby=${orderBy}`);
+  const getSortedGames = async (orderBy, isAscending = true) => {
+    const response = await request(`http://localhost:8000/games?orderby=${orderBy}&direction=${isAscending ? 'asc' : 'desc'}`);
     const games = await response.json();
     setGames(games);
   };
