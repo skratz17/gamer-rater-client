@@ -19,6 +19,12 @@ export const GameProvider = props => {
     setGames(games);
   };
 
+  const getSortedGames = async orderBy => {
+    const response = await request(`http://localhost:8000/games?orderby=${orderBy}`);
+    const games = await response.json();
+    setGames(games);
+  };
+
   const getGameById = async gameId => {
     const response = await request(`http://localhost:8000/games/${gameId}`);
     const game = await response.json();
@@ -40,7 +46,7 @@ export const GameProvider = props => {
 
   return (
     <GameContext.Provider value={{ 
-      games, getGames, getGamesBySearchTerm, getGameById, createGame, addImage 
+      games, getGames, getGamesBySearchTerm, getSortedGames, getGameById, createGame, addImage 
     }}>
       {props.children}
     </GameContext.Provider>

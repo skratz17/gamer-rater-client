@@ -1,14 +1,23 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GameContext } from './GameProvider';
 import { GameSearch } from './GameSearch';
+import { GameSortControls } from './GameSortControls';
 
 export const GameList = () => {
-  const { games, getGames, getGamesBySearchTerm } = useContext(GameContext);
+  const { games, getGames, getGamesBySearchTerm, getSortedGames } = useContext(GameContext);
+
+  const [ sortField, setSortField ] = useState(null);
 
   useEffect(() => {
     getGames();
   }, []);
+
+  useEffect(() => {
+    if(sortField) {
+      getSortedGames(sortField)
+    }
+  }, [ sortField ]);
 
   const handleSearch = searchTerm => {
     if(searchTerm) {
@@ -22,6 +31,8 @@ export const GameList = () => {
   return (
     <div>
       <GameSearch onSearch={handleSearch} />
+      <GameSortControls onSelect={setSortField} currentSortField={sortField} />
+
       <Link to="/games/create">Create New Game</Link>
       <ul className="game-list">
         {
