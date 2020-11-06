@@ -1,10 +1,23 @@
 .navbar {
+  padding: 1.5rem;
+  border-bottom: 1px solid #0003;
+}
+
+.navbar-list {
     display: flex;
-    flex-wrap: nowrap;
+    align-items: center;
     justify-content: left;
 }
 
 .navbar__item {
-    flex-basis: 20%;
     list-style-type: none;
+    margin: 0 2rem;
+}
+
+.navbar__item:last-child {
+  margin-left: auto;
+}
+
+.navbar__item a {
+  font-size: 1.5rem;
 }

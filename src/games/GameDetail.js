@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { GameContext } from './GameProvider';
 import { GameImageForm } from './GameImageForm';
 import { ReviewProvider } from '../reviews/ReviewProvider';
 import { ReviewList } from '../reviews/ReviewList';
 import { ReviewForm } from '../reviews/ReviewForm';
+import './GameDetail.css';
 
 export const GameDetail = () => {
   const { gameId } = useParams();
@@ -30,24 +31,37 @@ export const GameDetail = () => {
 
   return (
     <div className="game">
+      <div className="game-edit-wrapper">
+        <Link className="btn game-edit-link" to={`/games/${gameId}/edit`}>Edit Game</Link>
+      </div>
       <h2 className="game__title">{game.title} ({game.year})</h2>
       <p className="game__designer">{game.designer ? game.designer.name : 'Unknown Developer'}</p>
       <p className="game__description">{game.description}</p>
-      <p className="game__num-players">Up to {game.num_players} players</p>
-      <p className="game__estimated-duration">Average game lasts {game.estimated_duration} minutes</p>
-      <p className="game__age-recommendation">Recommended for players {game.age_recommendation} years of age and up</p>
-      {
-        game.categories.map(c => <p key={c.id} className="game__category">{c.name}</p>)
-      }
-      <p className="game__average-rating">Average rating: {game.average_rating} / 10</p>
+      <ul className="game__quick-facts">
+        <li className="game__num-players">Up to {game.num_players} players.</li>
+        <li className="game__estimated-duration">Average game lasts {game.estimated_duration} minutes.</li>
+        <li className="game__age-recommendation">Recommended for players {game.age_recommendation} years of age and up.</li>
+      </ul>
 
-      {game.images.map(({ image }) => <img src={image} />)}
+      <div className="game__additional-info">
+        <ul className="game__categories">
+          <li>Categories:</li>
+          {
+            game.categories.map(c => <li key={c.id} className="game__category">{c.name}</li>)
+          }
+        </ul>
+        <p className="game__average-rating">Average rating: {game.average_rating} / 10</p>
+      </div>
+
+      <div className="game__images">
+        {game.images.map(({ image }) => <img className="game__image" src={image} />)}
+      </div>
 
       <GameImageForm gameId={game.id} onUploadSuccess={() => _getGameById(gameId)} />
 
       <ReviewProvider>
-        <ReviewForm gameId={game.id} />
         <ReviewList gameId={game.id} />
+        <ReviewForm gameId={game.id} />
       </ReviewProvider>
     </div>
   )

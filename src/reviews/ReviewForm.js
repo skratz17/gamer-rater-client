@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
+
 import { ReviewContext } from './ReviewProvider';
+import './ReviewForm.css';
 
 export const ReviewForm = props => {
   const { gameId } = props;
@@ -32,24 +34,28 @@ export const ReviewForm = props => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <fieldset>
-        <label>Rating</label>
+    <form className="review-form" onSubmit={handleSubmit}>
+      <h4 className="review-form__header">Write Your Own Review!</h4>
+
+      <fieldset className="review-form__rating-wrapper">
         <input type="range" min="0" max="10" step="1"
           name="rating"
           value={formValues.rating}
           onChange={handleChange} />
-        <span>{formValues.rating}</span>
+        <span className="review-form__rating-value">{formValues.rating} / 10</span>
       </fieldset>
 
-      <fieldset>
+      <fieldset className="review-form__review-wrapper">
         <textarea name="review" 
+          rows={5}
+          cols={35}
+          className="review-form__review"
           value={formValues.review || ''} 
           onChange={handleChange} 
           placeholder="Write a review" />
       </fieldset>
 
-      <button type="submit">Submit Review</button>
+      <button className="btn btn--create" type="submit">Submit Review</button>
     </form>
   );
 };
