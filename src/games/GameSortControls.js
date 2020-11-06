@@ -13,14 +13,24 @@ export const GameSortControls = props => {
   return (
     <div className={`game-sort-controls ${className || ''}`}>
       <label className="game-sort-controls__label italics">sort:</label>
-      { sortFields.map(({ field, displayName }) => (
-        <button key={field} 
-          onClick={() => onSelect(field)}
-          className={`game-sort-controls__button ${field === currentSortField.field ? `game-sort-controls__button--${currentSortField.isAscending ? 'asc' : 'desc'}` : ''}`}
-        >
-          {displayName}
-        </button>
-      ))}
+      { sortFields.map(({ field, displayName }) => {
+        const buttonClassNames = [ 'game-sort-controls__button' ];
+
+        if(currentSortField?.field === field) {
+          const directionModifier = currentSortField.isAscending ? 'asc' : 'desc';
+          buttonClassNames.push(`game-sort-controls__button--${directionModifier}`);
+        }
+
+        return (
+          <button key={field} 
+            onClick={() => onSelect(field)}
+            className={buttonClassNames.join(' ')}
+          >
+            {displayName}
+          </button>
+        );
+      }
+      )}
     </div>
   );
 };
