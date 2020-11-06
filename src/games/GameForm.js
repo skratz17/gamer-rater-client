@@ -26,7 +26,7 @@ export const GameForm = () => {
     const game = await getGameById(gameId);
     setFormValues({
       title: game.title,
-      categories: game.categories.map(({ category }) => category.id),
+      categories: game.categories.map(c => c.id),
       designerId: game.designer.id,
       year: game.year,
       numPlayers: game.num_players,
