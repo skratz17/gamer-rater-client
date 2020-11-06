@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { CategorySelect } from '../categories/CategorySelect';
+import { CategoryToggler } from '../categories/CategoryToggler';
 import { DesignerSelect } from '../designers/DesignerSelect';
 import { GameContext } from './GameProvider';
 
@@ -11,6 +11,20 @@ export const GameForm = () => {
   const history = useHistory();
 
   const { createGame } = useContext(GameContext);
+
+  const handleCategoryToggle = toggledCategory => {
+    const categories = formValues.categories ? [ ...formValues.categories ]: [];
+    const categoryIndex = categories.indexOf(toggledCategory);
+
+    if(categoryIndex >= 0) {
+      categories.splice(categoryIndex, 1);
+    }
+    else {
+      categories.push(toggledCategory);
+    }
+
+    setFormValues({ ...formValues, categories });
+  };
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -36,7 +50,7 @@ export const GameForm = () => {
 
       <fieldset>
         <label>Category</label>
-        <CategorySelect placeholder="Choose a category" value={formValues.categoryId} onChange={handleChange} name="categoryId" />
+        <CategoryToggler selectedCategories={formValues.categories} onToggleCategory={handleCategoryToggle} />
       </fieldset>
 
       <fieldset>
