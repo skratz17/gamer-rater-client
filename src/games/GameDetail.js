@@ -43,7 +43,7 @@ export const GameDetail = () => {
 
       {game.images.map(({ image }) => <img src={image} />)}
 
-      <GameImageForm gameId={game.id} onUploadSuccess={_getGameById} />
+      <GameImageForm gameId={game.id} onUploadSuccess={() => _getGameById(gameId)} />
 
       <ReviewProvider>
         <ReviewForm gameId={game.id} />
