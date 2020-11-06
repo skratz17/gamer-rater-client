@@ -1,10 +1,21 @@
 .navbar {
+  padding: 1.5rem;
+}
+
+.navbar-list {
     display: flex;
-    flex-wrap: nowrap;
     justify-content: left;
 }
 
 .navbar__item {
-    flex-basis: 20%;
     list-style-type: none;
+    margin: 0 2rem;
+}
+
+.navbar__item:last-child {
+  margin-left: auto;
+}
+
+.navbar__item a {
+  font-size: 1.5rem;
 }
