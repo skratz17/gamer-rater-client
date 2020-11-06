@@ -1,0 +1,30 @@
+.review-form {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-form__header {
+  font-size: 1.5rem;
+}
+
+.review-form__rating-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.review-form__rating-wrapper > * {
+  margin: 0 0.5rem;
+}
+
+.review-form__rating-value {
+  font-size: 2rem;
+}
+
+.review-form__review {
+  font-size: 1.5rem;
+  padding: 1rem;
+}

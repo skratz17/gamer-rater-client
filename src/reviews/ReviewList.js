@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 
 import { ReviewContext } from './ReviewProvider';
 import { Review } from './Review';
+import './ReviewList.css';
 
 export const ReviewList = props => {
   const { gameId } = props;
@@ -19,9 +20,11 @@ export const ReviewList = props => {
   }
 
   return (
-    <div className="review-list">
+    <div className="review-list-wrapper">
       <h3 className="review-list__header">Reviews</h3>
-      { reviews.map(r => <Review key={r.id} review={r} />)}
+      <div className="review-list">
+        { reviews.map(r => <Review key={r.id} review={r} />)}
+      </div>
     </div>
   );
 };

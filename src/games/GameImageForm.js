@@ -24,12 +24,12 @@ export const GameImageForm = props => {
   };
 
   return (
-    <>
+    <div className="game-image-form-wrapper">
       <h3 className="game-image-form__header">Upload your own photo!</h3>
       <form className="game-image-form" onSubmit={handleSubmit}>
         <input className="game-image-form__file" type="file" id="game_image" />
         <button className="game-image-form__submit btn btn--create" type="submit">Upload</button>
       </form>
-    </>
+    </div>
   );
 };

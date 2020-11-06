@@ -57,8 +57,8 @@ export const GameDetail = () => {
       <GameImageForm gameId={game.id} onUploadSuccess={() => _getGameById(gameId)} />
 
       <ReviewProvider>
-        <ReviewForm gameId={game.id} />
         <ReviewList gameId={game.id} />
+        <ReviewForm gameId={game.id} />
       </ReviewProvider>
     </div>
   )

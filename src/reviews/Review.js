@@ -1,4 +1,5 @@
 import React from 'react';
+import './Review.css';
 
 export const Review = props => {
   const { review } = props;
@@ -6,8 +7,10 @@ export const Review = props => {
 
   return (
     <div className="review">
-      <p className="review__author">{review.player.full_name}</p>
-      <p className="review__rating">{rating} out of 10</p>
+      <div className="review__top-line">
+        <p className="review__author">{review.player.full_name}</p>
+        <p className="review__rating">{rating} out of 10</p>
+      </div>
       <p className="review__date">{timestamp}</p>
       <p className="review__text">{review.review}</p>
     </div>

@@ -6,6 +6,8 @@
 
 .game-image-form__header {
   text-align: center;
+  font-size: 2rem;
+  margin: 1rem 0;
 }
 
 .game-image-form__file {
