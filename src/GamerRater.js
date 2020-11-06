@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import { ApplicationViews } from './ApplicationViews';
+import { Header } from './header/Header';
 import { NavBar } from './nav/NavBar';
 import { Login } from './auth/Login';
 import { Register } from './auth/Register';
@@ -12,6 +13,7 @@ export const GamerRater = () => (
         <Route render={() => {
             if (localStorage.getItem("gamer_rater_token")) {
                 return <>
+                    <Header />
                     <NavBar />
                     <Route render={props => <ApplicationViews {...props} />} />
                 </>

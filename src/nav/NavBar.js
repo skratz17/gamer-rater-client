@@ -12,6 +12,11 @@ export const NavBar = () => {
         <li className="navbar__item">
             <Link to="/games">Games</Link>
         </li>
+        <li className="navbar__item">
+          <Link className="btn btn--create" to="/games/create">
+            Create New Game
+          </Link>
+        </li>
         { localStorage.getItem('gamer_rater_token') !== null &&
             <li className="navbar__item">
               <Link to="/logout">Logout</Link>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import './GameSearch.css';
 
 export const GameSearch = props => {
   const [ searchTerm, setSearchTerm ] = useState(null)
 
-  const { onSearch } = props;
+  const { onSearch, className } = props;
 
   useEffect(() => {
     if(searchTerm !== null) {
@@ -14,6 +15,10 @@ export const GameSearch = props => {
   }, [ searchTerm ]);
 
   return (
-    <input type="text" value={searchTerm || ''} onChange={e => setSearchTerm(e.target.value)} />
+    <input type="text" 
+      placeholder="Search for a game"
+      className={`game-search ${className}`}
+      value={searchTerm || ''} 
+      onChange={e => setSearchTerm(e.target.value)} />
   );
 };

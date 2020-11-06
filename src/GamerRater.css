@@ -1,9 +1,11 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Core element styles */
 a {
   color: #00f;
   text-decoration: none;
@@ -11,4 +13,26 @@ a {
 
 a:hover {
   color: #0000b6;
+}
+
+/* Utilities */
+.btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #0003;
+  cursor: pointer;
+  display: inline-block;
+  color: #000;
+}
+
+.btn--create {
+  background-color: #0f0;
+}
+
+.btn--create:hover {
+  background-color: #0e0;
+  color: #000;
+}
+
+.italics {
+  font-style: italic;
 }

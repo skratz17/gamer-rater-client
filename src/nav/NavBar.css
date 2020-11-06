@@ -1,9 +1,11 @@
 .navbar {
   padding: 1.5rem;
+  border-bottom: 1px solid #0003;
 }
 
 .navbar-list {
     display: flex;
+    align-items: center;
     justify-content: left;
 }
 
