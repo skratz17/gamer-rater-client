@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { GameContext } from './GameProvider';
 import { GameImageForm } from './GameImageForm';
@@ -31,6 +31,9 @@ export const GameDetail = () => {
 
   return (
     <div className="game">
+      <div className="game-edit-wrapper">
+        <Link className="btn game-edit-link" to={`/games/${gameId}/edit`}>Edit Game</Link>
+      </div>
       <h2 className="game__title">{game.title} ({game.year})</h2>
       <p className="game__designer">{game.designer ? game.designer.name : 'Unknown Developer'}</p>
       <p className="game__description">{game.description}</p>

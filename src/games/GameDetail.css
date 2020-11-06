@@ -7,6 +7,16 @@
   margin: 0.5rem 0;
 }
 
+.game-edit-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.game-edit-link:hover {
+  color: #000;
+  background-color: #eee;
+}
+
 .game__title,
 .game__designer,
 .game__description {
