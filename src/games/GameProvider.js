@@ -35,6 +35,10 @@ export const GameProvider = props => {
     return await request('http://localhost:8000/games', 'POST', game);
   };
 
+  const updateGame = async (gameId, game) => {
+    return await request(`http://localhost:8000/games/${gameId}`, 'PUT', game);
+  };
+
   const addImage = async (imageBase64, gameId) => {
     const requestData = {
       image: imageBase64,
@@ -46,7 +50,8 @@ export const GameProvider = props => {
 
   return (
     <GameContext.Provider value={{ 
-      games, getGames, getGamesBySearchTerm, getSortedGames, getGameById, createGame, addImage 
+      games, getGames, getGamesBySearchTerm, getSortedGames, getGameById, 
+      createGame, updateGame, addImage
     }}>
       {props.children}
     </GameContext.Provider>
