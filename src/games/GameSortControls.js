@@ -1,4 +1,5 @@
 import React from 'react';
+import './GameSortControls.css';
 
 export const GameSortControls = props => {
   const { onSelect, currentSortField, className } = props;
@@ -11,10 +12,11 @@ export const GameSortControls = props => {
 
   return (
     <div className={`game-sort-controls ${className || ''}`}>
+      <label className="game-sort-controls__label italics">sort:</label>
       { sortFields.map(({ field, displayName }) => (
         <button key={field} 
           onClick={() => onSelect(field)}
-          className={`game-sort-controls__button ${field === currentSortField ? 'game-sort-controls__button--selected' : ''}`}
+          className={`game-sort-controls__button ${field === currentSortField.field ? `game-sort-controls__button--${currentSortField.isAscending ? 'asc' : 'desc'}` : ''}`}
         >
           {displayName}
         </button>
