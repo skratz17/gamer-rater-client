@@ -37,7 +37,7 @@ export const GameDetail = () => {
       <p className="game__estimated-duration">Average game lasts {game.estimated_duration} minutes</p>
       <p className="game__age-recommendation">Recommended for players {game.age_recommendation} years of age and up</p>
       {
-        game.categories.map(({ category }) => <p key={category.id} className="game__category">{category.name}</p>)
+        game.categories.map(c => <p key={c.id} className="game__category">{c.name}</p>)
       }
       <p className="game__average-rating">Average rating: {game.average_rating} / 10</p>
 
