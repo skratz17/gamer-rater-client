@@ -1,0 +1,64 @@
+.game {
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+
+.game > * {
+  margin: 0.5rem 0;
+}
+
+.game__title,
+.game__designer,
+.game__description {
+  text-align: center;
+}
+
+.game__title {
+  font-size: 1.75rem;
+}
+
+.game__quick-facts {
+  position: relative;
+  left: 50%;
+  width: 50%;
+  transform: translateX(-25%);
+}
+
+.game__additional-info {
+  display: flex;
+  padding: 1rem;
+  font-size: 1.25rem;
+}
+
+.game__additional-info > * {
+  flex: 1;
+}
+
+.game__categories {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+.game__category {
+  margin: 0 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background-color: #00fff2;
+  border-radius: 5px;
+}
+
+.game__average-rating {
+  text-align: right;
+}
+
+.game__images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 350px);
+  grid-gap: 1rem;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.game__image {
+  max-width: 350px;
+}

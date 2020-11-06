@@ -1,0 +1,13 @@
+.game-image-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.game-image-form__header {
+  text-align: center;
+}
+
+.game-image-form__file {
+  font-size: 1.5rem;
+}
