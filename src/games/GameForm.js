@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 
-import { CategorySelect } from '../categories/CategorySelect';
+import { CategoryToggler } from '../categories/CategoryToggler';
 import { DesignerSelect } from '../designers/DesignerSelect';
 import { GameContext } from './GameProvider';
 
@@ -9,8 +9,46 @@ export const GameForm = () => {
   const [ formValues, setFormValues ] = useState({});
 
   const history = useHistory();
+  const location = useLocation();
+  const { gameId } = useParams();
 
-  const { createGame } = useContext(GameContext);
+  const { createGame, getGameById, updateGame } = useContext(GameContext);
+
+  const isEditMode = location.pathname.includes('edit');
+
+  useEffect(() => {
+    if(isEditMode && gameId) {
+      getInitialFormValues();
+    }
+  }, []);
+
+  const getInitialFormValues = async () => {
+    const game = await getGameById(gameId);
+    setFormValues({
+      title: game.title,
+      categories: game.categories.map(({ category }) => category.id),
+      designerId: game.designer.id,
+      year: game.year,
+      numPlayers: game.num_players,
+      estimatedDuration: game.estimated_duration,
+      ageRecommendation: game.age_recommendation,
+      description: game.description
+    });
+  };
+
+  const handleCategoryToggle = toggledCategory => {
+    const categories = formValues.categories ? [ ...formValues.categories ]: [];
+    const categoryIndex = categories.indexOf(toggledCategory);
+
+    if(categoryIndex >= 0) {
+      categories.splice(categoryIndex, 1);
+    }
+    else {
+      categories.push(toggledCategory);
+    }
+
+    setFormValues({ ...formValues, categories });
+  };
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -23,8 +61,14 @@ export const GameForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    await createGame(formValues);
-    history.push('/games');
+    if(isEditMode && gameId) {
+      await updateGame(gameId, formValues);
+      history.push(`/games/${gameId}`);
+    }
+    else {
+      await createGame(formValues);
+      history.push('/games');
+    }
   };
 
   return (
@@ -36,7 +80,7 @@ export const GameForm = () => {
 
       <fieldset>
         <label>Category</label>
-        <CategorySelect placeholder="Choose a category" value={formValues.categoryId} onChange={handleChange} name="categoryId" />
+        <CategoryToggler selectedCategories={formValues.categories} onToggleCategory={handleCategoryToggle} />
       </fieldset>
 
       <fieldset>

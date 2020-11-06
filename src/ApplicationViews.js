@@ -14,8 +14,9 @@ export const ApplicationViews = () => (
         <CategoryProvider>
           <Route exact path="/" component={GameList} />
           <Route exact path="/games" component={GameList} />
-          <Route path="/games/create" component={GameForm} />
-          <Route path="/games/:gameId(\d+)" component={GameDetail} />
+          <Route exact path="/games/create" component={GameForm} />
+          <Route exact path="/games/:gameId(\d+)" component={GameDetail} />
+          <Route exact path="/games/:gameId(\d+)/edit" component={GameForm} />
         </CategoryProvider>
       </DesignerProvider>
     </GameProvider>
