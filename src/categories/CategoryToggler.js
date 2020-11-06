@@ -1,5 +1,7 @@
 import React, { useEffect, useContext } from 'react';
+
 import { CategoryContext } from './CategoryProvider';
+import './CategoryToggler.css';
 
 export const CategoryToggler = props => {
   const { onToggleCategory } = props;
@@ -15,8 +17,9 @@ export const CategoryToggler = props => {
     <div className="category-toggler">
       { categories.map(c => (
         <div className="category-toggle">
-          <label className="category-toggle__label">{c.name}</label>
-          <input name="categories" 
+          <label htmlFor={`category-${c.id}`} className="category-toggle__label">{c.name}</label>
+          <input name={`category-${c.id}`}
+            id={`category-${c.id}`}
             className="category-toggle__checkbox"
             type="checkbox" 
             value={c.id} 

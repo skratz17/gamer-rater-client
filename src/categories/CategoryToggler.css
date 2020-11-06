@@ -1,0 +1,13 @@
+.category-toggler {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category-toggle {
+  padding: 0.5rem;
+}
+
+.category-toggle__checkbox {
+  transform: scale(1.75);
+  margin: 1rem;
+}

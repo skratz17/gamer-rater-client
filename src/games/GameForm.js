@@ -4,6 +4,7 @@ import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { CategoryToggler } from '../categories/CategoryToggler';
 import { DesignerSelect } from '../designers/DesignerSelect';
 import { GameContext } from './GameProvider';
+import './GameForm.css';
 
 export const GameForm = () => {
   const [ formValues, setFormValues ] = useState({});
@@ -72,7 +73,7 @@ export const GameForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="game-form" onSubmit={handleSubmit}>
       <fieldset>
         <label>Title</label>
         <input type="text" name="title" value={formValues.title || ''} onChange={handleChange} />
@@ -105,7 +106,9 @@ export const GameForm = () => {
 
       <fieldset>
         <label>Recommended Age Group</label>
-        <input type="number" name="ageRecommendation" value={formValues.ageRecommendation || ''} onChange={handleChange} /><span> and up</span>
+        <div>
+          <input type="number" name="ageRecommendation" value={formValues.ageRecommendation || ''} onChange={handleChange} /><span> and up</span>
+        </div>
       </fieldset>
 
       <fieldset>
@@ -113,7 +116,7 @@ export const GameForm = () => {
         <textarea name="description" value={formValues.description || ''} onChange={handleChange} />
       </fieldset>
 
-      <button type="submit">Submit</button>
+      <button className="btn btn--create" type="submit">Submit</button>
     </form>
   );
 };
